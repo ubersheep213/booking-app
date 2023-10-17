@@ -1,0 +1,71 @@
+﻿@page
+@model HotelAppRazorPages.Pages.RoomSearchModel
+@{
+	ViewData["Title"] = "Search Room";
+}
+
+<h1>@ViewData["Title"]</h1>
+<p>
+	@ViewData["DatesMessage"]
+</p>
+<div style="width: 100%; display: table;">
+
+	<div style="display: table-row">
+		<form method="post">
+			<p>
+				<div style="width: 250px; display: table-cell;">
+					<label asp-for="DateSearch.StartDate">Start Date</label><br/>
+					<input type="date" asp-for="DateSearch.StartDate" />
+				</div>
+				<div style="display: table-cell">
+					<label asp-for="DateSearch.EndDate">End Date</label><br/>
+					<input type="date" asp-for="DateSearch.EndDate" />
+				</div>
+			</p>
+			<p>
+				<div style="display: table-row">
+					<button asp-page-handler="Search" type="submit" class="btn btn-primary">Search</button>
+				</div>
+			</p>
+		</form>
+	</div>
+
+	<p>
+		@ViewData["RoomsMessage"]
+	</p>
+
+	@if (Model.RoomTypes?.Count > 0)
+	{
+		<div>
+			<form method="post">
+				<input type="hidden" asp-for="DateSearch.StartDate" />
+				<input type="hidden" asp-for="DateSearch.EndDate" />
+				<table class="table">
+					<tr>
+						<th>Select</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Price</th>
+					</tr>
+					@foreach (var type in Model.RoomTypes)
+					{
+						<tr>
+							<td>
+								<input type="radio" asp-for="RoomTypeId" value="@type.Id" />
+							</td>
+							<td>@type.Title</td>
+							<td>@type.Description</td>
+							<td>@type.Price.ToString("F2")</td>
+						</tr>
+					}
+				</table>
+				<button asp-page-handler="Select" type="submit">Select</button>
+			</form>
+		</div>
+	}
+
+</div>
+
+
+
+

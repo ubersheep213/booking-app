@@ -1,0 +1,33 @@
+﻿@page
+@model HotelAppRazorPages.Pages.BookRoomModel
+@{
+	ViewData["Title"] = "Book Room";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div style="width: 100%; display: table;">
+	<div style="display: table-row">
+		<form method="post">
+			<p>
+				<div style="width: 400px; display: table-cell;">
+					<label asp-for="FirstName">First Name</label>
+					<input type="text" asp-for="FirstName" />
+				</div>
+				<div style="display: table-cell;">
+					<label asp-for="LastName">Last Name</label>
+					<input type="text" asp-for="LastName" />
+				</div>
+			</p>
+			<h2>@Model.RoomType.Title</h2>
+			<p>
+				@Model.RoomType.Description
+			</p>
+			<p>
+				<div style="display: table-row;">
+					<button type="submit" class="btn btn-primary">Book</button>
+				</div>
+			</p>			
+		</form>
+	</div>
+</div>
